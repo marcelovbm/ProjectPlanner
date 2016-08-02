@@ -1,0 +1,152 @@
+@media (min-width: 1200px)
+{
+    .plan
+    {
+        width: 100%;
+    }
+}
+.middle-card{
+    /* margin: 0 3.9% 0 3.9%; */
+}
+
+.left-card{
+    float: left;
+}
+
+.right-card{
+    float: left;
+}
+
+.plan
+{
+    /* float: left; */
+    /* text-align: center; */
+    position: relative;
+    margin-bottom: 30px;
+    display: block;
+    /* margin: 0 1% 0 1%; */
+    /* padding: 0; */
+    color: transparent;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.plan .plan-feature
+{
+    font-size: 15px;
+    font-weight: 700;
+
+    position: relative;
+    top: 1rem;
+}
+
+.plan-feature > hr
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.plan > ul
+{
+    margin: 0;
+    padding: 0;
+}
+.plan > ul > li > a
+{
+    font-size: 16px;
+    text-decoration: none;
+    opacity: 0.87;
+    color: #000;
+}
+
+.plan .plan-feature
+{
+    text-align: center;
+
+    color: transparent;
+}
+.pricing-table .plan .plan-name span
+{
+    font-size: 20px;
+}
+.pricing-table .plan ul
+{
+    margin: 0;
+
+    list-style: none;
+
+    -webkit-border-radius: 0 0 5px 5px;
+       -moz-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
+}
+.pricing-table .plan ul li.plan-feature
+{
+    margin-right: 35px;
+    padding: 10px 10px;
+
+    border-top: 1px solid #c5c8c0;
+}
+.plan-name-productOwner
+{
+    padding: 20px;
+    color: rgba(255,255,255, 0.87);
+    background-color: #009688;
+}
+.plan-name-scrumMaster
+{
+    padding: 20px;
+    color: rgba(255,255,255, 0.87);
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    background-color: #2a9492;
+}
+.plan-name-developerTeam
+{
+    padding: 20px;
+    color: rgba(255,255,255, 0.87);
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    background-color: #009688;
+}
+
+/* Button Scrum Team */
+
+.btn-plan-select
+{
+    /* font-size: 18px; */
+    position: relative;
+    font-weight: 700;
+    top: 18px;
+    border-radius: 4%;
+    width: 88px;
+    height: 36px;
+    left: 36%;
+    padding: 8px 25px;
+    /* opacity: 0.87; */
+    color: rgb(255,255,255);
+    background-color: #009688;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-plan-select:hover
+{
+    background-color: #00aa9a;
+    border-color: #00aa9a;
+    color: #FFFFFF;
+}
+
+#scrumMasterTable .btn
+{
+    position: relative;
+    top: 18px;
+    left: 36%;
+    color: rgb(255,255,255);
+    background-color: #2a9492;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+#scrumMasterTable .btn:hover
+{
+    background-color: #32ABA8;
+    border-color: #00aa9a;
+    color: #FFFFFF;
+}

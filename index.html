@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Project Planner</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<section id="banner" class="container-fluid">
+			<header>
+				<h3 id="logo">Project Planner</h3>
+				<nav>
+					<a href="#">About</a>
+					<a href="#">Features</a>
+					<a href="#" class="button button_small" data-toggle="modal" data-target="#login" id="signin">Sign In</a>
+				</nav>
+			</header>
+			<div class="content">
+				<h1 class="title">Project Planner</h1>
+				<h2 class="sub_title">Start your project here!</h2>
+				<button type="button" id="registerButton" class="button button_highlight" data-toggle="modal" data-target="#register">Register</button>
+			</div>
+
+	</section>
+	<!-- ========================== MODAL SIGIN ================================== -->
+	<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">Register</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="mybox" class="alert alert text-center hide" role="alert">
+
+					</div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadUsuario" id="cadUsuario" method="POST">
+						<div class="form-group" id="divInputUsername">
+							<label for="inputUsername" class="col-xs-5 col-sm-4 control-label">User Name</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control " id="inputUsername" name="inputUsername" placeholder="User Name" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputEmail">
+							<label for="inputEmail" class="col-xs-3 col-sm-4 control-label">Email</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputPassword">
+							<label for="inputPassword" class="col-xs-3 col-sm-4 control-label">Password</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="password" class="form-control" id="inputPassword" name="inputPassword"placeholder="Password" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputPasswordConfirmed">
+							<label for="inputPasswordConfirmed" class="col-xs-3 col-sm-4 control-label">Confirm your password</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="password" class="form-control" id="inputPasswordConfirmed" name="inputPasswordConfirmed" placeholder="Confirm your password" required="" autofocus="">
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" name="submitSignin" id="submitSignin">Submit</button>
+					<button type="button" class="btn btn-danger" onclick="removerClass();" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ========================== MODAL LOGIN ================================== -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">Sing In</h4>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="mybox" class="alert alert text-center hide" role="alert">
+
+					</div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="logUsuario" id="logUsuario" method="POST">
+						<div class="form-group" id="divInputEmail">
+							<label for="inputEmail" class="col-xs-2 col-sm-4 control-label">Email</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control " id="inputEmail" name="inputEmail" placeholder="Email" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputPassword">
+							<label for="inputPassword" class="col-xs-3 col-sm-4 control-label">Password</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="password" class="form-control" id="inputPassword" name="inputPassword"placeholder="Password" required="" autofocus="">
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+				<div class="modal-footer">
+						<button type="button" class="btn btn-primary" name="submitLogin" id="submitLogin">Sing In</button>
+						<button type="button" class="btn btn-danger" onclick="removerClass();" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/index.js"></script>
+</body>
+</html>

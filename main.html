@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Marcelo Magrinelli" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="theme-color" content="#FF00FF">
+  <title>Main</title>
+  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pricing-table.css">
+  <link rel="stylesheet" href="css/sb-admin.css">
+  <link rel="stylesheet" href="css/semantic.css">
+	<!-- Material Design fonts -->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- NAVBAR HEADER -->
+		    <div class="navbar-header">
+		    	<a id="navbar-brand" class="navbar-brand" href="#">Project Planner</a>
+		    </div>
+		    <div class="collapse navbar-collapse">
+		    	<!-- Collect the nav links, forms, and other content for toggling -->
+		   		<p id="userNameLogin"class="navbar-text navbar-right"></p>
+		    </div>
+		</div>
+	</nav>
+	<!-- CORPO DO SITE -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="sidebar col-sm-3 col-md-2">
+				<!-- SIDENAVBAR BODY -->
+				<ul class="nav nav-sidebar">
+					<li id="first" class="active">
+						<a href="#" id="projectSelected" class="">Project Selected</a>
+					</li>
+					<li>
+						<a href="#" id="employee" value="Employee"><span class="material-icons glyphicon" aria-hidden="true">person</span>Employee</a>
+					</li>
+					<li>
+						<a href="#" id="project" value="Project"><span class="material-icons glyphicon" aria-hidden="true">insert_drive_file</span>Project</a>
+					</li>
+					<li>
+						<a href="#" id="team" value="Team"><span class="material-icons glyphicon" aria-hidden="true">group</span>Team</a>
+					</li>
+					<li>
+						<a id="backlog" value="backlog" href="#"><span class="material-icons glyphicon" aria-hidden="true">book</span>Product Backlog</a>
+					</li>
+					<li>
+						<a id="sprint" href="#"><span class="material-icons glyphicon" aria-hidden="true">autorenew</span>Sprint</a>
+					</li>
+					<li>
+						<a id="bugTraker" href="#"><span class="material-icons glyphicon" aria-hidden="true">bug_report</span>Bug Traker</a>
+					</li>
+					<li>
+						<a id="meetings" href="#"><span class="material-icons glyphicon" aria-hidden="true">date_range</span>Meetings</a>
+					</li>
+					<li>
+						<a id="graphics" href="#"><span class="material-icons glyphicon" aria-hidden="true">trending_down</span>Graphics</a>
+					</li>
+					<li>
+						<a id="logoout" href="#"><span class="material-icons glyphicon" aria-hidden="true">power_settings_new</span>Sign Out</a>
+					</li>
+				</ul>
+			</div>
+			<div class = "col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+				<h1 id="panel-heading" class="text-center page-header"></h1>
+				<div id="panel-body" class="container-fluid">
+					<!-- PANEL-BODY HERE -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR PROJETO -->
+	<div class="modal fade" data-backdrop="static" id="new-project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="project.removerClassProject();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">New Project</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="myboxProjeto" class="alert text-center hide" role="alert"></div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadProjeto" id="cadProjeto" method="POST">
+						<div class="form-group" id="divInputProjectName">
+							<label for="inputProjectName" class="col-xs-2 col-sm-4 control-label">Project Name</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control " id="inputProjectName" name="inputProjectName" placeholder="Project Name" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputProductOwner">
+							<label for="inputProductOwner" class="col-xs-3 col-sm-4 control-label">Product Owner</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="form-control" name="inputProductOwner" id="inputProductOwner">
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divInputProjectManager">
+							<label for="InputProjectManager" class="col-xs-3 col-sm-4 control-label">Project Manager</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="form-control" name="inputProjectManager" id="inputProjectManager">
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divStartDate">
+							<label for="inputStartDate" class="col-xs-3 col-sm-4 control-label">Start Date</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="date" name="daterangeStart" id="daterangeStart" class="form-control" placeholder="MM/DD/YYYY"/>
+							</div>
+						</div>
+						<div class="form-group" id="divEndDate">
+							<label for="inputEndDate" class="col-xs-3 col-sm-4 control-label">End Date</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="date" name="daterangeEnd" id="daterangeEnd" class="form-control" placeholder="DD/MM/YYYY"/>
+							</div>
+						</div>
+						<div class="form-group" id="divDescription">
+							<label for="inputProjectDescription" class="col-xs-2 col-sm-4 control-label">Description</label>
+							<div class="col-xs-7 col-sm-5">
+								<textarea type="text"class="form-control" rows="5" name="inputProjectDescription" id="inputProjectDescription"></textarea>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" class="btn btn-primary" onclick="project.myCallAddProject();">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="project.removerClassProject();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR EMPLOYEE -->
+	<div class="modal fade" data-backdrop="static" id="new-employee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">New Employee</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="myboxProjeto" class="alert alert text-center hide" role="alert">
+
+					</div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadEmployee" id="cadEmployee" method="POST">
+						<div class="form-group" id="divInputNameEmployee">
+							<label for="inputNameEmployee" class="col-xs-2 col-sm-4 control-label">Name</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control " id="inputNameEmployee" name="inputNameEmployee" placeholder="Name" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputEmailEmployee">
+							<label for="inputEmailEmployee" class="col-xs-3 col-sm-4 control-label">Email</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control" id="inputEmailEmployee" name="inputEmailEmployee" placeholder="Email" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputEmployeeFunction">
+							<label for="inputEmployeeFunction" class="col-xs-2 col-sm-4 control-label">Function</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="form-control" id="inputEmployeeFunction" name="inputEmployeeFunction">
+									<option disabled selected value> -- select an option -- </option>
+									<option value="Project Manager">Project Manager</option>
+									<option value="Product Owner">Product Owner</option>
+									<option value="Scrum Master">Scrum Master</option>
+									<option value="Development Team">Development Team</option>
+								</select>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="employee.addEmployee();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="employee.clearModalEmployee();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+		<!-- MODAL EDITAR EMPLOYEE -->
+	<div class="modal fade" data-backdrop="static" id="editEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" id="editarEmployeeBody">
+
+			</div>
+		</div>
+	</div>
+	<!-- MODAL EDITAR PROJETO -->
+	<div class="modal fade" data-backdrop="static" id="editProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" id="editarProjectBody">
+			</div>
+		</div>
+	</div>
+	<!-- MODAL DELETAR -->
+	<div class="modal fade" data-backdrop="static" id="deletar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-delete">
+			<div class="modal-content modal-sm">
+				<div class="modal-body text-center">
+					<p class="">Do you really want to delete?</p>
+					<button type="button" class="btn btn-danger buttonWhite buttondelete" value="yes" id="deletarYes" data-dismiss="modal">Delete</button>
+					<button type="button" class="btn btn-primary buttonWhite" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL EDITAR PRODUCT OWNER -->
+	<div class="modal fade" data-backdrop="static" id="editProductOwner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" id="editProductOwnerBody">
+			</div>
+		</div>
+	</div>
+	<!-- MODAL ADD SCRUM MASTER -->
+	<div class="modal fade" data-backdrop="static" id="addScrumMaster" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">Scrum Master</h2>
+				</div>
+				<div class="modal-body" id="editProductOwnerBody">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="mybox" class="alert alert text-center hide" role="alert"></div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadScrumMaster" id="cadScrumMaster" method="POST">
+						<div class="form-group" id="divinputScrumMaster">
+							<label for="inputScrumMaster" class="col-xs-2 col-sm-4 control-label">Scrum Master</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="form-control" name="inputScrumMaster" id="inputScrumMaster">
+								</select>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="team.addScrumMaster();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="team.listTeam();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL ADD Developmente Team -->
+	<div class="modal fade" data-backdrop="static" id="addDevelopmenteTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">Development Team</h2>
+				</div>
+				<div class="modal-body" id="editScrumMaster">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="mybox" class="alert alert text-center hide" role="alert"></div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadDevelopmenteTeam" id="cadDevelopmenteTeam" method="POST">
+						<div class="form-group" id="divDevelopmenteTeam">
+							<label for="inputDeveloperName" class="col-xs-2 col-sm-4 control-label">Name</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="form-control" name="inputDeveloperName" id="inputDeveloperName">
+								</select>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="team.addDevelopmenteTeam();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="team.listTeam();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR BACK LOG -->
+	<div class="modal fade" data-backdrop="static" id="new-backLog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="productBacklog.clearModalBackLog();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">New Item</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="myboxBackLog" class="alert alert text-center hide" role="alert"></div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadBackLog" id="cadBackLog" method="POST">
+						<div class="form-group" id="divInputBackLogName">
+							<label for="inputBackLogName" class="col-xs-2 col-sm-4 control-label">Item Name</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control " id="inputBackLogName" name="inputBackLogName" placeholder="Item Name" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputPlanningPoker">
+							<label for="inputPlanningPoker" class="col-xs-2 col-sm-4 control-label">Planning Poker</label>
+							<div class="col-xs-7 col-sm-5">
+								<select name="inputPlanningPoker" id="inputPlanningPoker" class="form-control">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="5">5</option>
+									<option value="8">8</option>
+									<option value="13">13</option>
+									<option value="21">21</option>
+									<option value="34">34</option>
+									<option value="55">55</option>
+									<option value="89">89</option>
+									<option value="144">144</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divInputBackLogDescription">
+							<label for="inputBackLogDescription" class="col-xs-2 col-sm-4 control-label">Description</label>
+							<div class="col-xs-7 col-sm-5">
+								<textarea type="text"class="form-control" rows="5" name="inputBackLogDescription" id="inputBackLogDescription"></textarea>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="productBacklog.addBackLog();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="productBacklog.clearModalBackLog();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR BACK LOG - EMPLOYEE -->
+	<div class="modal fade" data-backdrop="static" id="new-backLogEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="removerClassBackLog();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">New Item</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="myboxBackLog" class="alert alert text-center hide" role="alert">
+
+					</div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadBackLogEmployee" id="cadBackLogEmployee" method="POST">
+						<div class="form-group" id="divInputBackLogName">
+							<label for="inputBackLogName" class="col-xs-2 col-sm-4 control-label">Item Name</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text" class="form-control" id="inputBackLogName" name="inputBackLogName" placeholder="Item Name" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputPlanningPoker">
+							<label for="inputPlanningPoker" class="col-xs-2 col-sm-4 control-label">Planning Poker</label>
+							<div class="col-xs-7 col-sm-5">
+								<select name="inputPlanningPoker" id="inputPlanningPoker" class="form-control">
+									<option value="0">0</option>
+									<option value="1/2">1/2</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="5">5</option>
+									<option value="8">8</option>
+									<option value="13">13</option>
+									<option value="20">20</option>
+									<option value="40">40</option>
+									<option value="100">100</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divInputBackLogDescription">
+							<label for="inputBackLogDescription" class="col-xs-2 col-sm-4 control-label">Description</label>
+							<div class="col-xs-7 col-sm-5">
+								<textarea type="text"class="form-control" rows="5" name="inputBackLogDescription" id="inputBackLogDescription"></textarea>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="addBackLogEmployee();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="clearModalBackLogEmployee();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL EDITAR BACK LOG -->
+	<div class="modal fade" data-backdrop="static" id="edit-backLog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" id="editarBacklog">
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR BUG TRAKER -->
+	<div class="modal fade" data-backdrop="static" id="new-bugTraker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">New Bug</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="myboxBugTraker" class="alert alert text-center hide" role="alert">
+
+					</div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadBugTraker" id="cadBugTraker" method="POST">
+						<div class="form-group" id="divBugTrakerName">
+							<label for="inputBugTrakerName" class="col-xs-2 col-sm-4 control-label">Title</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="text"class="form-control" name="inputBugTrakerName" id="inputBugTrakerName" placeholder="Title" required="" autofocus="">
+							</div>
+						</div>
+						<div class="form-group" id="divInputBugTrakerName">
+							<label for="inputBugTrakerItem" class="col-xs-2 col-sm-4 control-label">Sprint item</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="form-control" name="inputBugTrakerItem" id="inputBugTrakerItem">
+									<option disabled selected value> -- select an option -- </option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divBugTrakerDescription">
+							<label for="inputBugTrakerDescription" class="col-xs-2 col-sm-4 control-label">Description</label>
+							<div class="col-xs-7 col-sm-5">
+								<textarea type="text"class="form-control" rows="5" name="inputBugTrakerDescription" id="inputBugTrakerDescription"></textarea>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="bugTraker.addBugTraker();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="bugTraker.clearModalBugTraker();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR MEETING -->
+	<div class="modal fade" data-backdrop="static" id="new-meeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="meeting.clearModalMeeting();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">Meeting</h2>
+				</div>
+				<div class="modal-body">
+					<!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+					<div id="myboxMeeting" class="alert alert text-center hide" role="alert">
+
+					</div>
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadMeeting" id="cadMeeting" method="POST">
+						<div class="form-group" id="divTypeOfMeeting">
+							<label for="inputTypeOfMeetin" class="col-xs-3 col-sm-4 control-label">Type of Meeting</label>
+							<div class="col-xs-7 col-sm-5">
+								<select name="inputTypeOfMeetin" id="inputTypeOfMeetin" class="form-control">
+									<option disabled selected value> -- select an option -- </option>
+									<option value="Daily Scrum">Daily Scrum</option>
+									<option value="Sprint Planning Meeting">Sprint Planning Meeting</option>
+									<option value="Sprint Retrospective">Sprint Retrospective</option>
+									<option value="Sprint Review Meeting">Sprint Review Meeting</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divStartDate">
+							<label for="inputStartDate" class="col-xs-3 col-sm-4 control-label">Meeting Date</label>
+							<div class="col-xs-7 col-sm-5">
+								<input type="date" name="daterangeStart" id="daterangeStart" class="form-control" placeholder="DD/MM/YYYY"/>
+							</div>
+						</div>
+						<div class="form-group" id="divInputMembersMeeting">
+							<label for="inputMembersMeeting" class="col-xs-2 col-sm-4 control-label">Members</label>
+							<div class="col-xs-7 col-sm-5">
+								<select class="ui fluid dropdown" multiple="" id="inputMembersMeeting" name="inputMembersMeeting">
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="divMeetingDescription">
+							<label for="inputMeetingDescription" class="col-xs-2 col-sm-4 control-label">Description</label>
+							<div class="col-xs-7 col-sm-5">
+								<textarea type="text"class="form-control" rows="5" name="inputMeetingDescription" id="inputMeetingDescription"></textarea>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="meeting.addMeeting();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="meeting.clearModalMeeting();" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL DESCRIPTION SPRINT -->
+	<div class="modal fade" data-backdrop="static" id="descriptionSprintCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="removerClassMeeting();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabelDescriptionSprint"></h2>
+				</div>
+				<div class="modal-body">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL NOTIFICACOES -->
+	<div class="modal fade" id="notificacoes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-delete">
+			<div class="modal-content modal-sm">
+				<div class="modal-body text-center">
+					<p class="notification_p" id="notificationText"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- SPRINT TIME -->
+	<div class="modal fade" data-backdrop="static" id="new-timeSprint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header btn-primary">
+					<button type="button" class="close" onclick="" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title text-center" id="myModalLabel">Sprint Time</h2>
+				</div>
+				<div class="modal-body">
+					<!-- FIM CAIXA DE ALERTA -->
+					<!-- FORMULARIO DO MODAL DE CADASTRAR -->
+					<form class="form-horizontal" role="form" name="cadTimeSprint" id="cadTimeSprint" method="POST">
+						<div class="form-group" id="divSprintTime">
+							<label for="inputSprintTime" class="col-xs-3 col-sm-4 control-label">Time</label>
+							<div class="col-xs-7 col-sm-5">
+								<select name="inputSprintTime" id="inputSprintTime" class="form-control">
+									<option disabled selected value> -- select an option -- </option>
+									<option value="2">2 Weeks</option>
+									<option value="3">3 Weeks</option>
+									<option value="4">4 Weeks</option>
+								</select>
+							</div>
+						</div>
+					</form>
+					<!-- FIM DO FORMULARIO -->
+				</div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submitSprintTime"class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="" data-dismiss="modal">Cancel</button>
+        </div>
+			</div>
+		</div>
+	</div>
+
+  <script type="text/javascript" src="js/Chart.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script defer type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="js/semantic.js"></script>
+  <!-- FUNCOES DO PROJETO -->
+  <script type="text/javascript" src="js/employee.js"></script>
+	<script type="text/javascript" src="js/project.js"></script>
+	<script type="text/javascript" src="js/team.js"></script>
+  <script type="text/javascript" src="js/productBacklog.js"></script>
+  <script type="text/javascript" src="js/sprint.js"></script>
+  <script type="text/javascript" src="js/bugTraker.js"></script>
+	<script type="text/javascript" src="js/meeting.js"></script>
+  <script type="text/javascript" src="js/charts.js"></script>
+	<!-- Google Charts -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">google.charts.load('current', {packages: ['line']});</script>
+</body>
+</html>

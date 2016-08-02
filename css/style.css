@@ -1,0 +1,140 @@
+#description{
+  background-color: #F5F5F5;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*-------------- Button ----------------	*/
+
+.button
+{
+    font-weight: 700;
+
+    padding: .6rem 4rem;
+
+    text-align: center;
+    text-decoration: none;
+
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    outline: none;
+}
+
+.button_highlight
+{
+    font-size: 1.15rem;
+
+    background: #16a085;
+}
+.button_highlight:hover
+{
+    font-size: 1.15rem;
+
+    text-decoration: none;
+
+    color: #16a085;
+    background: #ecf0f1;
+}
+
+
+.button_small
+{
+    padding: .4rem 2rem;
+
+    background: rgba(250 ,250 ,250, .35);
+}
+
+.button_small:hover
+{
+    background: rgba(250 ,250 ,250, .5);
+}
+
+/* ------------------   Banner ------------------- */
+
+
+#banner{
+  background-image: url(../img/background.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+p{
+  width: 600px;
+  margin: 0 auto 20px;
+}
+
+#banner header
+{
+    padding: 2.5rem 0;
+}
+
+#banner #logo
+{
+    font-family: 'FARRAY', Helvetica, sans-sarif;
+    font-size: 1.35rem;
+    font-weight: 700;
+
+    float: left;
+
+    margin: 0;
+
+    color: #fff;
+}
+
+#banner nav
+{
+    float: right;
+
+    padding: 0 2rem;
+}
+#banner nav a
+{
+    font-weight: 700;
+
+    margin-left: 2rem;
+
+    text-decoration: none;
+
+    color: #fff;
+}
+
+#banner .content
+{
+  padding: 6rem 0 12rem 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: #fff;
+}
+
+#banner .content .title
+{
+    font-family: 'FARRAY', Helvetica, sans-sarif;
+    font-size: 4.5rem;
+
+    margin: 0;
+}
+
+#banner .content .sub_title
+{
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.75;
+
+    width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+#banner .content .button_wrapper
+{
+    margin: 3rem 0;
+}
+#banner .content .button_wrapper .button
+{
+    margin: 0 .75rem;
+}
