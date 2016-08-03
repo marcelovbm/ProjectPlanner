@@ -34,7 +34,7 @@ echo 				'	</select>
 				<!-- FIM DO FORMULARIO -->
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" name="done" id="done"onclick="team.editProductOwner();">Edit</button>
+				<button type="button" class="btn btn-primary" name="done" id="done"onclick="team.editProductOwner();">Select</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal" onClick="team.removerEditarProductOwner();">Cancelar</button>
 			</div>';
 

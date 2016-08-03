@@ -23,43 +23,7 @@ echo '
 					<div class="col-xs-7 col-sm-5">
 						<input value="' . $row['NameProject'] . '"type="text" class="form-control " id="inputEditProjectName" name="inputEditProjectName" disabled="disabled" placeholder="Project Name" required="" autofocus="">
 					</div>
-				</div>
-				<div class="form-group" id="divInputEditarProductOwner">
-					<label for="inputEditarProductOwner" class="col-xs-3 col-sm-4 control-label">Product Owner</label>
-					<div class="col-xs-7 col-sm-5">
-						<select class="form-control" name="inputEditarProductOwner" id="inputEditarProductOwner">
-							<option value="' . $row['productOwner'] . '">' . $row['productOwner'] . '</option>';
-$recebeOwner = $mysqli->query("SELECT employeeName, limiteProjetos, employeeFunction
-													FROM `Employee`
-													WHERE User_email = '$userName'
-													AND employeeFunction = 'Product Owner'");
-while ($rowOwner = mysqli_fetch_array($recebeOwner)) {
-	if ($rowOwner['limiteProjetos'] == 0) {
-		echo '		<option value="' . $rowOwner['employeeName'] . '">' . $rowOwner['employeeName'] . '</option>';
-	}
-}
-echo '			</select>
-					</div>
-				</div>
-				<div class="form-group" id="divInputEditarProjectManager">
-					<label for="inputEditarProjectManager" class="col-xs-3 col-sm-4 control-label">Project Manager</label>
-					<div class="col-xs-7 col-sm-5">
-						<select class="form-control" name="inputEditarProjectManager" id="inputEditarProjectManager">
-							<option value="' . $row['projectManager'] . '">' . $row['projectManager'] . '</option>';
-$recebeManager = $mysqli->query("SELECT employeeName, limiteProjetos, employeeFunction
-														FROM `Employee`
-														WHERE User_email = '$userName'
-														AND employeeFunction = 'Project Manager'");
-while ($rowManager = mysqli_fetch_array($recebeManager)) {
-	if ($rowManager['limiteProjetos'] == 0) {
-		echo '		<option value="' . $rowManager['employeeName'] . '">' . $rowManager['employeeName'] . '</option>';
-	} else {
-		echo ' ';
-	}
-}
-echo '			</select>
-					</div>
-				</div>
+				</div>				
 				<div class="form-group" id="divInputEditStarDate">
 					<label for="inputEditStartDate" class="col-xs-3 col-sm-4 control-label">Start Date</label>
 					<div class="col-xs-7 col-sm-5">

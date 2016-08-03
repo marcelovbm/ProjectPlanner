@@ -6,7 +6,7 @@ include 'connection_mysql.php';
 $userName = $_SESSION['userName'];
 $nameProject = $_POST['nameProject'];
 //VERIFICA SE O USUARIO E FUNCIONARIO DO PROJETO
-$recebeEmployeeProject = $mysqli->query("SELECT NameProject,productOwner,projectManager,EndDate,Description FROM Project WHERE User_email = (SELECT User_email FROM Employee WHERE employeeEmail = '$userName') AND NameProject = '$nameProject'");
+$recebeEmployeeProject = $mysqli->query("SELECT NameProject,projectManager,EndDate,Description FROM Project WHERE User_email = (SELECT User_email FROM Employee WHERE employeeEmail = '$userName') AND NameProject = '$nameProject'");
 $rowVerify = $recebeEmployeeProject->fetch_array(MYSQLI_ASSOC);
 //VERIFICA SE NÃO FOI INSERIDO UM VALOR EM "NameProject"
 if(!isset($rowVerify['NameProject'])){
@@ -27,7 +27,7 @@ if(!isset($rowVerify['NameProject'])){
 									<hr>
 								</li>
 							</ul>
-							<button type="button" onClick="team.receberEditProductOwner();" class="btn btn-plan-select ">Edit</button>
+							<button type="button" onClick="team.receberEditProductOwner();" class="btn btn-plan-select ">Select</button>
 						</div>
 					</div>
 					<div class="col-md-4">

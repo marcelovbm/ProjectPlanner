@@ -12,6 +12,9 @@ $(document).ready(function() {
       document.getElementById('employee').addEventListener('click', function(){
         employee.listEmployee();
       });
+      document.getElementById('criterio').addEventListener('click', function(){
+        criterio.listCriterios();
+      });
       document.getElementById('project').addEventListener('click', function(){
         document.getElementById('projectSelected').innerText = "Project Selected";
 				project.listproject();

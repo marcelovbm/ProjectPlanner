@@ -40,32 +40,41 @@
 					<li id="first" class="active">
 						<a href="#" id="projectSelected" class="">Project Selected</a>
 					</li>
-					<li>
-						<a href="#" id="employee" value="Employee"><span class="material-icons glyphicon" aria-hidden="true">person</span>Employee</a>
+          <li style="display: none;">
+						<a href="#" id="" value=""><i class="material-icons glyphicon">person</i>Client</a>
 					</li>
 					<li>
-						<a href="#" id="project" value="Project"><span class="material-icons glyphicon" aria-hidden="true">insert_drive_file</span>Project</a>
+						<a href="#" id="employee" value="Employee"><i class="material-icons glyphicon">supervisor_account</i>Employee</a>
+					</li>
+          <li>
+						<a href="#" id="criterio" value="Critérios da Organização"><i class="material-icons glyphicon">list</i>Critérios da Organização</a>
 					</li>
 					<li>
-						<a href="#" id="team" value="Team"><span class="material-icons glyphicon" aria-hidden="true">group</span>Team</a>
+						<a href="#" id="project" value="Project"><i class="material-icons glyphicon">insert_drive_file</i>Project</a>
 					</li>
 					<li>
-						<a id="backlog" value="backlog" href="#"><span class="material-icons glyphicon" aria-hidden="true">book</span>Product Backlog</a>
+						<a href="#" id="team" value="Team"><i class="material-icons glyphicon">group</i>Team</a>
 					</li>
 					<li>
-						<a id="sprint" href="#"><span class="material-icons glyphicon" aria-hidden="true">autorenew</span>Sprint</a>
+						<a id="backlog" value="backlog" href="#"><i class="material-icons glyphicon">book</i>Product Backlog</a>
 					</li>
 					<li>
-						<a id="bugTraker" href="#"><span class="material-icons glyphicon" aria-hidden="true">bug_report</span>Bug Traker</a>
+						<a id="sprint" href="#"><i class="material-icons glyphicon" aria-hidden="true">autorenew</i>Sprint</a>
 					</li>
 					<li>
-						<a id="meetings" href="#"><span class="material-icons glyphicon" aria-hidden="true">date_range</span>Meetings</a>
+						<a id="bugTraker" href="#"><i class="material-icons glyphicon">bug_report</i>Bug Traker</a>
+					</li>
+          <li>
+						<a id="" href="#"><i class="material-icons glyphicon">warning</i>Riscos</a>
 					</li>
 					<li>
-						<a id="graphics" href="#"><span class="material-icons glyphicon" aria-hidden="true">trending_down</span>Graphics</a>
+						<a id="meetings" href="#"><i class="material-icons glyphicon">date_range</i>Meetings</a>
 					</li>
 					<li>
-						<a id="logoout" href="#"><span class="material-icons glyphicon" aria-hidden="true">power_settings_new</span>Sign Out</a>
+						<a id="graphics" href="#"><i class="material-icons glyphicon">timeline</i>Graphics</a>
+					</li>
+					<li>
+						<a id="logoout" href="#"><i class="material-icons glyphicon">power_settings_new</i>Sign Out</a>
 					</li>
 				</ul>
 			</div>
@@ -74,6 +83,13 @@
 				<div id="panel-body" class="container-fluid">
 					<!-- PANEL-BODY HERE -->
 				</div>
+			</div>
+		</div>
+	</div>
+	<!-- MODAL CADASTRAR PROJETO -->
+  <div class="modal fade" data-backdrop="static" id="new-avaliacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" id="cadAvaliacao">					
 			</div>
 		</div>
 	</div>
@@ -95,20 +111,6 @@
 							<label for="inputProjectName" class="col-xs-2 col-sm-4 control-label">Project Name</label>
 							<div class="col-xs-7 col-sm-5">
 								<input type="text" class="form-control " id="inputProjectName" name="inputProjectName" placeholder="Project Name" required="" autofocus="">
-							</div>
-						</div>
-						<div class="form-group" id="divInputProductOwner">
-							<label for="inputProductOwner" class="col-xs-3 col-sm-4 control-label">Product Owner</label>
-							<div class="col-xs-7 col-sm-5">
-								<select class="form-control" name="inputProductOwner" id="inputProductOwner">
-								</select>
-							</div>
-						</div>
-						<div class="form-group" id="divInputProjectManager">
-							<label for="InputProjectManager" class="col-xs-3 col-sm-4 control-label">Project Manager</label>
-							<div class="col-xs-7 col-sm-5">
-								<select class="form-control" name="inputProjectManager" id="inputProjectManager">
-								</select>
 							</div>
 						</div>
 						<div class="form-group" id="divStartDate">
@@ -213,6 +215,13 @@
 					<button type="button" class="btn btn-danger buttonWhite buttondelete" value="yes" id="deletarYes" data-dismiss="modal">Delete</button>
 					<button type="button" class="btn btn-primary buttonWhite" data-dismiss="modal">Cancel</button>
 				</div>
+			</div>
+		</div>
+	</div>
+  <!-- MODAL EDITAR MANAGER -->
+	<div class="modal fade" data-backdrop="static" id="editManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" id="editManagerBody">
 			</div>
 		</div>
 	</div>
@@ -562,7 +571,71 @@
 			</div>
 		</div>
 	</div>
+  <!-- CADASTRAR CRITERIO -->
+  <div class="modal fade" data-backdrop="static" id="new-criterio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header btn-primary">
+          <button type="button" class="close" onclick="" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h2 class="modal-title text-center" id="myModalLabel">New Critério</h2>
+        </div>
+        <div class="modal-body">
+          <!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+          <div id="myboxCriterio" class="alert alert text-center hide" role="alert">
 
+          </div>
+          <!-- FIM CAIXA DE ALERTA -->
+          <!-- FORMULARIO DO MODAL DE CADASTRAR -->
+          <form class="form-horizontal" role="form" name="cadCriterio" id="cadCriterio" method="POST">
+            <div class="form-group" id="divInputNameCriterio">
+              <label for="inputNameCriterio" class="col-xs-2 col-sm-4 control-label">Name</label>
+              <div class="col-xs-7 col-sm-5">
+                <input type="text" class="form-control " id="inputNameCriterio" name="inputNameCriterio" placeholder="Name" required="" autofocus="">
+              </div>
+            </div>
+            <div class="form-group" id="divInputCriterioPeso">
+              <label for="inputCriterioPeso" class="col-xs-2 col-sm-4 control-label">Peso</label>
+              <div class="col-xs-7 col-sm-5">
+                <select class="form-control" id="inputCriterioPeso" name="inputCriterioPeso">
+                  <option disabled selected value> -- select an option -- </option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <!-- FIM DO FORMULARIO -->
+        </div>
+        <div class="modal-footer ">
+          <button type="button" name="submit" id="submit" onclick="criterio.addCriterio();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="criterio.clearModalCriterio();" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- EDITAR CRITERIO-->
+  <div class="modal fade" data-backdrop="static" id="edit-criterio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" id="editar-Criterio">
+
+      </div>
+    </div>
+  </div>
+  <!-- MODAL CRITERIOS PROJECT -->
+  <div class="modal fade" data-backdrop="static" id="criterios-project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" id="selectCriteriosProject">
+      </div>
+    </div>
+  </div>
   <script type="text/javascript" src="js/Chart.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -579,6 +652,7 @@
   <script type="text/javascript" src="js/bugTraker.js"></script>
 	<script type="text/javascript" src="js/meeting.js"></script>
   <script type="text/javascript" src="js/charts.js"></script>
+  <script type="text/javascript" src="js/criterios.js"></script>
 	<!-- Google Charts -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">google.charts.load('current', {packages: ['line']});</script>

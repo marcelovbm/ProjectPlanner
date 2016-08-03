@@ -25,23 +25,21 @@ var project = {
 	                    valign: 'middle',
 	                    sortable: true
 	                }, {
-	                    field: 'productOwner',
-	                    title: 'Product Owner',
-	                    align: 'center',
-	                    valign: 'middle',
-	                    sortable: true
-	                }, {
-	                    field: 'projectManager',
-	                    title: 'Project Manager',
-	                    align: 'center',
-	                    valign: 'top',
-	                    sortable: true
-	                }, {
 	                    field: 'data',
 	                    title: 'End Date',
 	                    align: 'center',
 	                    valign: 'middle'
-	                }, {
+	                },	{
+	                    field: 'Designar_Gerente',
+	                    title: 'Manager',
+	                    align: 'center',
+	                    valign: 'middle'
+	                },	{
+	                    field: 'Criterios',
+	                    title: 'Criterios',
+	                    align: 'center',
+	                    valign: 'middle'
+	                },{
 	                    field: 'edit',
 	                    title: 'Edit',
 	                    align: 'center',
@@ -64,27 +62,8 @@ var project = {
 		})
 		.done(function(){
 			//console.log('success');
-			$.ajax({ //FAZ UM REQUISICAO PARA O ARQUIVO COM LIGACAO AO BANCO DE DADOS
-				url: "controller/listEmployeeProjectProductOwner.php" //ARQUIVO COM LIGACAO AO BANCO DE DADOS
-			})
-			.done(function(employeeOwner) {
-				document.getElementById('inputProductOwner').innerHTML = employeeOwner;
-				$.ajax({ //FAZ UM REQUISICAO PARA O ARQUIVO COM LIGACAO AO BANCO DE DADOS
-					url: "controller/listEmployeeProjectProjectManager.php" //ARQUIVO COM LIGACAO AO BANCO DE DADOS
-				})
-				.done(function(employee) {
-					document.getElementById('inputProjectManager').innerHTML = employee;
-				})
-				.fail(function(){
-					console.log('error');
-				});
-			})
-			.fail(function(){
-				console.log('error');
-			});
 		})
 		.fail(function(){
-
 			console.log('error');
 		});
 	},
@@ -105,6 +84,7 @@ var project = {
 		})
 		.done(function(){
 			//console.log('success');
+			project.removerEditarProject();
 		})
 		.fail(function(){
 			console.log('error');
@@ -158,16 +138,59 @@ var project = {
 		project.listproject();
 	},
 
+	modalGerenteProject(idProject){
+		var element = document.getElementById('editManagerBody'); //RECEBE A TAG COM ID 'editarProjectBody'
+		$.ajax({ //ENVIA OS VALORES PARA ARQUIVO COM CONEXAO PARA O BANCO DE DADOS
+			url: "controller/receberManager.php", //ARQUIVO COM CONEXAO AO BANCO DE DADOS
+			type: "POST", //TIPO DE ENVIO
+			data: "name=" + idProject //VALORES ENVIADOS
+		})
+		.done(function(msg) { //RESPOSTA DA CONEXAO COM O ARQUIVO
+      //console.log(msg);
+			element.innerHTML = [msg]; //INSERE A RESPOSTA EM element
+			$('#editManager').modal('show'); //MOSTRA O MODAL COM ID 'editProject'
+		})
+		.fail(function (){
+			console.log('error');
+		});
+	},
+
+	modalCriteriosProject(name){
+		
+	},
+
+	editProjectManager(name){
+		var projectManager = document.getElementById('inputEditarProjectManager');
+		var projectManagerSelected = projectManager.options[projectManager.selectedIndex].value;
+		if(projectManagerSelected === ''){
+			$('#editManager').modal('hide');
+			alert("You need to select a employee");
+		}else {
+			var data = 'inputProjectName=' + name + '&' + 'inputEditarProjectManager=' + projectManagerSelected;
+			$.ajax({ //ENVIA OS VALORES PARA ARQUIVO COM CONEXAO PARA O BANCO DE DADOS
+				url: "controller/editarManager.php", //ARQUIVO COM CONEXAO AO BANCO DE DADOS
+				type: "POST", //TIPO DE ENVIO
+				data: data //VALORES ENVIADOS
+			})
+			.done(function(){
+				//console.log('success');
+				project.listproject();
+				$('#editManager').modal('hide');
+			})
+			.fail(function (msg){
+				console.log(msg);
+			});
+		}
+	},
+
 	removerClassProject() { //REMOVE AS CLASSES DE ALERT DA DIV E ESCONDE ELA NOVAMENTE
 		document.getElementById('myboxProjeto').classList.remove('alert-success');
 		document.getElementById('myboxProjeto').classList.add('hide');
 		document.getElementById('myboxProjeto').classList.remove('alert-danger');
 		document.getElementById('myboxProjeto').classList.add('hide');
 		document.getElementById('divInputProjectName').classList.remove('has-error');
-		document.getElementById('divInputProductOwner').classList.remove('has-error');
 		document.getElementById('divStartDate').classList.remove('has-error');
 		document.getElementById('divEndDate').classList.remove('has-error');
-		document.getElementById('divInputProjectManager').classList.remove('has-error');
 		project.listproject();
 		$('#cadProjeto').each(function() { //RESETA OS CAMPOS DO FORMULARIO DE CADASTRO
 			this.reset();
@@ -179,11 +202,9 @@ var project = {
 		document.getElementById('myboxProjeto').classList.remove('alert-success', 'hide');
 		document.getElementById('myboxProjeto').classList.remove('alert-danger', 'hide');
 		document.getElementById('divInputProjectName').classList.remove('has-error');
-		document.getElementById('divInputProductOwner').classList.remove('has-error');
 		document.getElementById('divStartDate').classList.remove('has-error');
 		document.getElementById('divEndDate').classList.remove('has-error');
 		document.getElementById('inputProjectDescription').classList.remove('has-error');
-		document.getElementById('divInputProjectManager').classList.remove('has-error');
 		var formData = $('#cadProjeto').serialize(); //VALORES RECEBIDOS PELO FORMULARIO
 		$.ajax({ //ENVIA OS VALORES PARA ARQUIVO COM CONEXAO PARA O BANCO DE DADOS
 			url: "controller/addProject.php", //ARQUIVO COM CONEXAO AO BANCO DE DADOS
@@ -198,44 +219,30 @@ var project = {
 				document.getElementById('myboxProjeto').classList.remove('hide');
 				document.getElementById('myboxProjeto').innerHTML = msg;
 			} else {
-				if (msg == "<p><strong>Product Owner</strong> não foi inserido!</p>") {
-					document.getElementById('divInputProductOwner').addClass('has-error');
+				if (msg == "<p><strong>Start date</strong> não foi inserido!</p>") {
+					document.getElementById('divStartDate').classList.add('has-error');
 					document.getElementById('myboxProjeto').classList.add('alert-danger');
 					document.getElementById('myboxProjeto').classList.remove('hide');
 					document.getElementById('myboxProjeto').innerHTML = msg;
 				} else {
-					if (msg == "<p><strong>Project Manager</strong> não foi inserido!</p>") {
-						document.getElementById('divInputProjectManager').classList.add('has-error');
+					if (msg == "<p><strong>End date</strong> não foi inserido!</p>") {
+						document.getElementById('diveEndtDate').classList.add('has-error');
 						document.getElementById('myboxProjeto').classList.add('alert-danger');
 						document.getElementById('myboxProjeto').classList.remove('hide');
 						document.getElementById('myboxProjeto').innerHTML = msg;
 					} else {
-						if (msg == "<p><strong>Start date</strong> não foi inserido!</p>") {
-							document.getElementById('divStartDate').classList.add('has-error');
+						if (msg == "<p><strong>Project já existe!</strong></p>") {
 							document.getElementById('myboxProjeto').classList.add('alert-danger');
 							document.getElementById('myboxProjeto').classList.remove('hide');
 							document.getElementById('myboxProjeto').innerHTML = msg;
 						} else {
-							if (msg == "<p><strong>End date</strong> não foi inserido!</p>") {
-								document.getElementById('diveEndtDate').classList.add('has-error');
-								document.getElementById('myboxProjeto').classList.add('alert-danger');
+							if (msg == "<p><strong>Project cadastrado com sucesso!</strong></p>") {
+								document.getElementById('myboxProjeto').classList.add('alert-success');
 								document.getElementById('myboxProjeto').classList.remove('hide');
 								document.getElementById('myboxProjeto').innerHTML = msg;
-							} else {
-								if (msg == "<p><strong>Project já existe!</strong></p>") {
-									document.getElementById('myboxProjeto').classList.add('alert-danger');
-									document.getElementById('myboxProjeto').classList.remove('hide');
-									document.getElementById('myboxProjeto').innerHTML = msg;
-								} else {
-									if (msg == "<p><strong>Project cadastrado com sucesso!</strong></p>") {
-										document.getElementById('myboxProjeto').classList.add('alert-success');
-										document.getElementById('myboxProjeto').classList.remove('hide');
-										document.getElementById('myboxProjeto').innerHTML = msg;
-										$('#cadProjeto').each(function() {
-											this.reset();
-										});
-									}
-								}
+								$('#cadProjeto').each(function() {
+									this.reset();
+								});
 							}
 						}
 					}
