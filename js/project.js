@@ -156,7 +156,18 @@ var project = {
 	},
 
 	modalCriteriosProject(name){
-		
+		var element = document.getElementById('cadAvaliacao'); //RECEBE A TAG COM ID 'editarProjectBody'
+		$.ajax({ //ENVIA OS VALORES PARA ARQUIVO COM CONEXAO PARA O BANCO DE DADOS
+			url: "controller/modalAvaliacaoCriterios.php"
+		})
+		.done(function(msg) { //RESPOSTA DA CONEXAO COM O ARQUIVO
+      //console.log(msg);
+			element.innerHTML = [msg]; //INSERE A RESPOSTA EM element
+			$('#new-avaliacao').modal('show'); //MOSTRA O MODAL COM ID 'editProject'
+		})
+		.fail(function (){
+			console.log('error');
+		});
 	},
 
 	editProjectManager(name){

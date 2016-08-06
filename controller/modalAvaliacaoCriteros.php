@@ -2,13 +2,7 @@
 
 session_start();
 include 'connection_mysql.php';
-$userName = $_SESSION['userName'];
-$nameProject = $_POST['inputProjectName'];
-$backlogName = $_POST['bakclogName'];
 
-$receberLinha = $mysqli->query("SELECT FROM WHERE");
-
-$row = $receberLinha->fetch_array(MYSQLI_ASSOC);
 
 echo '<div class="modal-header btn-primary">
         <button type="button" class="close" onclick="project.removerClassProject();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -19,162 +13,26 @@ echo '<div class="modal-header btn-primary">
       <div id="myboxProjeto" class="alert text-center hide" role="alert"></div>
         <!-- FIM CAIXA DE ALERTA -->
         <!-- FORMULARIO DO MODAL DE CADASTRAR -->
-          <form class="form-horizontal" role="form" method="POST">
+          <form class="form-inline" role="form" method="POST">
 						<div class="form-group" id="divInputBackLogName">
 							<label for="inputBackLogName" class="col-xs-2 col-sm-4 control-label">Item Name</label>
-							<div class="col-xs-7 col-sm-5">
-								<input value="' . $row[''] . '" type="text" class="form-control " id="inputBackLogName" name="inputBackLogName" disabled="disabled" placeholder="Item Name" required="" autofocus="" >
-							</div>
+							<div class="input-group-addon">$</div>
+              <div class="input-group-addon">.00</div>
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
 						</div>
-						<div class="form-group" id="divInputPlanningPoker">
-							<label for="inputPlanningPoker" class="col-xs-2 col-sm-4 control-label">Planning Poker Value</label>
-							<div class="col-xs-7 col-sm-5">
-								<select name="inputPlanningPoker" id="inputPlanningPoker" class="form-control">';
-if ($row['PlanningPoker'] == '0') {
-	echo '					<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '1/2') {
-	echo '					<option value="1/2">1/2</option>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '1') {
-	echo '					<option value="1">1</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '2') {
-	echo '					<option value="2">2</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '3') {
-	echo '					<option value="3">3</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '5') {
-	echo '					<option value="5">5</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '8') {
-	echo '					<option value="8">8</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '13') {
-	echo '					<option value="13">13</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="20">20</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '20') {
-	echo '					<option value="20">20</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="40">40</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '40') {
-	echo '					<option value="40">40</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="100">100</option>';
-} else if ($row['PlanningPoker'] == '100') {
-	echo '					<option value="100">100</option>
-									<option value="0">0</option>
-									<option value="1/2">1/2</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="5">5</option>
-									<option value="8">8</option>
-									<option value="13">13</option>
-									<option value="20">20</option>
-									<option value="40">40</option>';
-}
-
-echo '					</select>
-							</div>
-						</div>						
 					</form>
 					<!-- FIM DO FORMULARIO -->
 				</div>
 				<div class="modal-footer ">
-					<button type="button" class="btn btn-primary btn-lg" name="' . $row[''] . '" onclick="project.addAvaliacao(name);">Edit</button>
+					<button type="button" class="btn btn-primary btn-lg" name="" onclick="project.addAvaliacao(name);">Edit</button>
 					<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancel</button>
 				</div>';
 
-$receberLinha->close();
-$mysqli->close();
+
 ?>
