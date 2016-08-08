@@ -2,6 +2,19 @@ body{
     padding-top: 50px;
 }
 
+.modal-body > .form-inline,
+.modal-body > .form-inline > .form-group,
+.modal-body > .form-inline > .form-group > .input-group,
+.modal-body > .form-inline > .form-group > .input-group > .input-group-addon
+{
+  width: 100%;
+}
+
+.modal-body > .form-inline > .form-group > .input-group > .form-control
+{
+    width: auto;
+}
+
 .nav.nav-sidebar>li>a {
   display: flex;
   flex-direction: row;

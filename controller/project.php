@@ -20,7 +20,7 @@ while ($rowTeste = $projetosEmployee->fetch_array(MYSQLI_ASSOC)) {
 		 			'nameProject'=> $rowEmployee['NameProject'],
 		 			'data'=> $rowEmployeeData['EndDate'],
 		 			'table_comment'=> $rowEmployee['Description'],
-					'Designar_Gerente' => '<button type="button" class="btn btn-default btn-circle" disabled"><i class="material-icons list-icons" aria-hidden="true">perm_identity</i></button>',
+					'Designar_Gerente' => '<button type="button" class="btn btn-default btn-circle" disabled><i class="material-icons list-icons" aria-hidden="true">perm_identity</i></button>',
 					'Criterios' => '<button type="button" class="btn btn-default btn-circle" disabled><i class="material-icons list-icons" aria-hidden="true">list</i></button>',
 		 			'edit' => '<button type="button" class="btn btn-default btn-circle" disabled><i class="material-icons list-icons" aria-hidden="true">mode_edit</i></button>',
 		 			'delete' => '<button type="button" class="btn btn-default btn-circle" disabled><i class="material-icons list-icons" aria-hidden="true">delete_forever</i></button>'

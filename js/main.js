@@ -31,6 +31,9 @@ $(document).ready(function() {
       document.getElementById('bugTraker').addEventListener('click', function(){
         bugTraker.listBugTraker();
       });
+      document.getElementById('riscos').addEventListener('click', function(){
+        riscos.listRiscos();
+      });
       document.getElementById('meetings').addEventListener('click', function(){
         meeting.listMeeting();
 				$('.ui.dropdown').dropdown();

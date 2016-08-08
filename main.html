@@ -47,7 +47,7 @@
 						<a href="#" id="employee" value="Employee"><i class="material-icons glyphicon">supervisor_account</i>Employee</a>
 					</li>
           <li>
-						<a href="#" id="criterio" value="Critérios da Organização"><i class="material-icons glyphicon">list</i>Critérios da Organização</a>
+						<a href="#" id="criterio" value="criterios_da_organizacao"><i class="material-icons glyphicon">list</i>Critérios do Projeto </a>
 					</li>
 					<li>
 						<a href="#" id="project" value="Project"><i class="material-icons glyphicon">insert_drive_file</i>Project</a>
@@ -56,25 +56,25 @@
 						<a href="#" id="team" value="Team"><i class="material-icons glyphicon">group</i>Team</a>
 					</li>
 					<li>
-						<a id="backlog" value="backlog" href="#"><i class="material-icons glyphicon">book</i>Product Backlog</a>
+						<a href="#" id="backlog" value="backlog"><i class="material-icons glyphicon">book</i>Product Backlog</a>
 					</li>
 					<li>
-						<a id="sprint" href="#"><i class="material-icons glyphicon" aria-hidden="true">autorenew</i>Sprint</a>
+						<a href="#" id="sprint"><i class="material-icons glyphicon" aria-hidden="true">autorenew</i>Sprint</a>
 					</li>
 					<li>
-						<a id="bugTraker" href="#"><i class="material-icons glyphicon">bug_report</i>Bug Traker</a>
+						<a href="#" id="bugTraker"><i class="material-icons glyphicon">bug_report</i>Bug Traker</a>
 					</li>
           <li>
-						<a id="" href="#"><i class="material-icons glyphicon">warning</i>Riscos</a>
+						<a href="#" id="riscos"><i class="material-icons glyphicon">warning</i>Riscos</a>
 					</li>
 					<li>
-						<a id="meetings" href="#"><i class="material-icons glyphicon">date_range</i>Meetings</a>
+						<a href="#" id="meetings"><i class="material-icons glyphicon">date_range</i>Meetings</a>
 					</li>
 					<li>
-						<a id="graphics" href="#"><i class="material-icons glyphicon">timeline</i>Graphics</a>
+						<a href="#" id="graphics"><i class="material-icons glyphicon">timeline</i>Graphics</a>
 					</li>
 					<li>
-						<a id="logoout" href="#"><i class="material-icons glyphicon">power_settings_new</i>Sign Out</a>
+						<a href="#" id="logoout"><i class="material-icons glyphicon">power_settings_new</i>Sign Out</a>
 					</li>
 				</ul>
 			</div>
@@ -88,7 +88,7 @@
 	</div>
 	<!-- MODAL CADASTRAR AVALIACAO -->
   <div class="modal fade" data-backdrop="static" id="new-avaliacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content" id="cadAvaliacao">
 			</div>
 		</div>
@@ -636,6 +636,44 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL CADASTRAR RISCOS -->
+  <div class="modal fade" data-backdrop="static" id="new-riscos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header btn-primary">
+          <button type="button" class="close" onclick="riscos.clearModalRiscos();" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h2 class="modal-title text-center" id="myModalLabel">Meeting</h2>
+        </div>
+        <div class="modal-body">
+          <!-- CAIXA DE ALERTA NO MODAL DE CADASTRO -->
+          <div id="myboxMeeting" class="alert alert text-center hide" role="alert"></div>
+          <!-- FIM CAIXA DE ALERTA -->
+          <!-- FORMULARIO DO MODAL DE CADASTRAR -->
+          <form class="form-horizontal" role="form" name="cadRiscos" id="cadRiscos" method="POST">
+            <div class="form-group" id="divInputTitleRiscos">
+              <label for="inputTitleRiscos" class="col-xs-3 col-sm-4 control-label">Title</label>
+              <div class="col-xs-7 col-sm-5">
+                <input type="text" name="inputTitleRiscos" id="inputTitleRiscos" class="form-control" placeholder="Title"/>
+              </div>
+            </div>
+            <div class="form-group" id="divInputRiscosDescription">
+              <label for="inputRiscosDescription" class="col-xs-2 col-sm-4 control-label">Description</label>
+              <div class="col-xs-7 col-sm-5">
+                <textarea type="text" name="inputRiscosDescription" id="inputRiscosDescription" class="form-control" rows="7" ></textarea>
+              </div>
+            </div>
+          </form>
+          <!-- FIM DO FORMULARIO -->
+        </div>
+        <div class="modal-footer ">
+          <button type="submit" name="submit" id="submit" onclick="riscos.addRiscos();" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger" onclick="riscos.clearModalRiscos();" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript" src="js/Chart.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -653,6 +691,7 @@
 	<script type="text/javascript" src="js/meeting.js"></script>
   <script type="text/javascript" src="js/charts.js"></script>
   <script type="text/javascript" src="js/criterios.js"></script>
+  <script type="text/javascript" src="js/riscos.js"></script>
 	<!-- Google Charts -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">google.charts.load('current', {packages: ['line']});</script>

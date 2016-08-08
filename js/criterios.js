@@ -8,7 +8,7 @@ var criterio = {
 			url: 'controller/criterios.php',
 			dataType: 'JSON',
 			success: function(data){
-				console.log(data);
+				//console.log(data);
 				$('#tableCriterios').bootstrapTable({
 					data: data,
 					striped: true,
@@ -40,7 +40,7 @@ var criterio = {
 			}
 		})
 		.done(function(){
-			console.log('success');
+			//console.log('success');
 		})
 		.fail(function(){
 			console.log('error');

@@ -157,8 +157,11 @@ var project = {
 
 	modalCriteriosProject(name){
 		var element = document.getElementById('cadAvaliacao'); //RECEBE A TAG COM ID 'editarProjectBody'
+    var formData = $("#editarProject").serialize();
 		$.ajax({ //ENVIA OS VALORES PARA ARQUIVO COM CONEXAO PARA O BANCO DE DADOS
-			url: "controller/modalAvaliacaoCriterios.php"
+			url: "controller/modalAvaliacaoCriteros.php",
+      type: "POST",
+      data: "name=" + name
 		})
 		.done(function(msg) { //RESPOSTA DA CONEXAO COM O ARQUIVO
       //console.log(msg);
@@ -169,6 +172,31 @@ var project = {
 			console.log('error');
 		});
 	},
+
+  addAvaliacaoCriterio(name){
+		var formData = $("#addAvaliacaoCriterio").serialize();
+		if(formData.length === 0){
+			$('#new-avaliacao').modal('hide'); //MOSTRA O MODAL COM ID 'editProject'
+		} else{
+			var data = JSON.parse('{"' + decodeURI(formData.replace(/&/g, "\",\"").replace(/=/g,"\":\"").replace(/\+/g," ")) + '"}');
+			//console.log(($('form.form-inline').find('.form-group')).length);
+			//console.log(($('form.form-inline').find('.form-group')));
+			data.inputProjectName = name;
+			//console.log(data);
+			$.ajax({ //ENVIA OS VALORES PARA ARQUIVO COM CONEXAO PARA O BANCO DE DADOS
+				url: "controller/addAvaliacaoCriteros.php",
+				type: "POST",
+				data: {myData:data}
+			})
+			.done(function() { //RESPOSTA DA CONEXAO COM O ARQUIVO
+				//console.log(msg);
+				$('#new-avaliacao').modal('hide'); //MOSTRA O MODAL COM ID 'editProject'
+			})
+			.fail(function (){
+				console.log('error');
+			});
+		}
+  },
 
 	editProjectManager(name){
 		var projectManager = document.getElementById('inputEditarProjectManager');

@@ -43,7 +43,7 @@ echo 				'	</select>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" name="'. $nameProject .'" id="done" onclick="project.editProjectManager(name);">Select</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal" onClick="project.removerEditarProjectManager();">Cancelar</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 			</div>';
 
 $mysqli->close();
